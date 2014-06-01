@@ -10,7 +10,7 @@ private:
 	Node<T>*  tail;
 public:
 	LinkedList() : head(nullptr), tail(nullptr){};
-	void add(Node<T>* newPtr)
+	void addFirst(Node<T>* newPtr)
 	{
 		if (head)
 		{
@@ -23,6 +23,21 @@ public:
 			tail = newPtr;
 		}
 	};
+
+	void addLast(Node<T>* newPtr)
+	{
+		if (head)
+		{
+			tail->setNextPtr(newPtr);
+			tail = newPtr;
+		}
+		else
+		{
+			head = newPtr;
+			tail = newPtr;
+		}
+	};
+
 	Node<T>* find(const T &value)
 	{
 		Node<T>*  temp = head;
@@ -32,7 +47,7 @@ public:
 		}
 		return temp;
 	};
-	void remove(const T &value)
+	void removeItem(const T &value)
 	{
 		Node<T>*  priv = head;
 		Node<T>*  curr = head;

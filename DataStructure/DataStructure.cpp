@@ -17,10 +17,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	auto seconde = shared_ptr<Node<string>>(new Node<string>("tariku"));
 	auto third = shared_ptr<Node<string>>(new Node<string>("tegen"));
 	auto list = LinkedList<string>();
-	list.add(head.get());
-	list.add(seconde.get());
-	list.add(third.get());
-	list.remove("tegen");
+	list.addFirst(head.get());
+	list.addFirst(seconde.get());
+	list.addFirst(third.get());
+	list.removeItem("tegen");
 	if (list.find("arade"))
 		cout<<list.find("arade")->getValue()<<endl;
 	if (list.find("tariku"))
