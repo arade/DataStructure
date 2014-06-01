@@ -4,6 +4,8 @@
 #include "stdafx.h"
 #include<iostream>
 #include <string>
+#include <memory>
+#include "LinkedList.h"
 #include "Node.h"
 using namespace std;
 
@@ -11,17 +13,20 @@ using namespace std;
 int _tmain(int argc, _TCHAR* argv[])
 {
 
-	Node<string>* head = new Node<string>("arade");
-	Node<string>* seconde = new Node<string>("tariku");
-	Node<string>* nodePtr=head;
-	head->setNextPtr(seconde);
-
-	while (nodePtr){
-		cout << nodePtr->getValue()<<endl;
-
-		nodePtr = nodePtr->getNextPtr();
-	}
-	
+	auto head = shared_ptr<Node<string>>(new Node<string>("arade"));
+	auto seconde = shared_ptr<Node<string>>(new Node<string>("tariku"));
+	auto third = shared_ptr<Node<string>>(new Node<string>("tegen"));
+	auto list = LinkedList<string>();
+	list.add(head.get());
+	list.add(seconde.get());
+	list.add(third.get());
+	list.remove("tegen");
+	if (list.find("arade"))
+		cout<<list.find("arade")->getValue()<<endl;
+	if (list.find("tariku"))
+		cout << list.find("tariku")->getValue() << endl;
+	if (list.find("tegen"))
+		cout << list.find("tegen")->getValue() << endl;
 	return 0;
 }
 
