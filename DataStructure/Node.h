@@ -8,12 +8,12 @@ private:
 	T value;
 	Node<T>* nextPtr;
 public:
-	Node(const T &value):value(value)nextPtr(nullptr){};
-	~Node(){};
-	void setValue(const T &val){ value = val; }
-	void setNextPtr(const Node<T>* ptr){ nextPtr = ptr; }
-	T getValue()const{return &value};
-	Node<T>* getNextPtr()const { return nextPtr; }
+	Node<T>(const T val):value(val),nextPtr(nullptr){};
+	virtual  ~Node<T>() const {};
+	void setValue(T const &val){ value = val; }
+	void setNextPtr(Node<T>* const ptr) { nextPtr = ptr; }
+	T getValue()  const { return value; };
+	Node<T>* getNextPtr() const { return nextPtr; }
 };
 
 #endif
