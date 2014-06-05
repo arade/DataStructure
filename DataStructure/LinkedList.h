@@ -126,11 +126,10 @@ public:
 		NodeSingleLL<T>* tmp = ptr;
 		if (ptr)
 			ptr = ptr->getNextPtr();
+		else
+			ptr = head;
 		return tmp;
 	};
 
 };
-
-
-
 #endif

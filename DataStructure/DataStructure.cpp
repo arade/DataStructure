@@ -12,6 +12,7 @@
 #include "LinkedList.h"
 #include "DLinkedList.h"
 #include "Stack.h"
+#include "Queue.h"
 #include <stack>
 using namespace std;
 
@@ -24,24 +25,27 @@ int _tmain(int argc, _TCHAR* argv[])
 	auto seconde = shared_ptr<NodeDoubleLL<string>>(new NodeDoubleLL<string>("tariku"));
 	auto third = shared_ptr<NodeDoubleLL<string>>(new NodeDoubleLL<string>("tegen"));
 	//auto linkedList = LinkedList<string>();
-	auto dLinkedList = DLinkedList<string>();
-	dLinkedList.addFirst(head.get());
-	dLinkedList.addFirst(seconde.get());
-	dLinkedList.addFirst(third.get());
+	auto dLinkedList = Queue<string>();
+	dLinkedList.enqueue(head.get());
+	dLinkedList.enqueue(seconde.get());
+	dLinkedList.enqueue(third.get());
 	//linkedList.addLast(head.get());
 	//linkedList.addLast(seconde.get());
 	//linkedList.addLast(third.get());
 	//dLinkedList.removeFirst();
-	NodeDoubleLL<string>* ptr;
+	//NodeDoubleLL<string>* ptr;
 	//ptr = dLinkedList.iterator();
-	while (ptr = dLinkedList.iteratorBackward())
-	{
-		cout<<ptr->getValue()<<endl;
-	}
-	while (ptr = dLinkedList.iteratorBackward())
+	
+	cout << dLinkedList.dequeue()->getValue()<< endl;
+	cout << dLinkedList.dequeue()->getValue() << endl;
+	cout << dLinkedList.dequeue()->getValue() << endl;
+	/*while (ptr = dLinkedList.iteratorBackward())
 	{
 		cout << ptr->getValue() << endl;
 	}
+	cout << dLinkedList.find("arade")<<endl;
+	cout << dLinkedList.remove("arade")->getValue();
+	cout << dLinkedList.find("arade") << endl;*/
 
 	/*auto stack = Stack<string>();
 	stack.push(head.get());

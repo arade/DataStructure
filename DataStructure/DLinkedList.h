@@ -47,8 +47,9 @@ public:
 	};
 
 	//node is removed from the head of doublly linked list
-	void removeFirst()
+	NodeDoubleLL<T>* removeFirst()
 	{
+		NodeDoubleLL<T>* answer = head;
 		if (head == tail)
 		{
 			tail = nullptr;
@@ -59,11 +60,13 @@ public:
 			head = (NodeDoubleLL<T>*)head->getNextPtr();
 			head->setPrvPtr(nullptr);
 		}
+		return answer;
 	};
 
 	//node is removed from the tail of doublly linked list
-	void removeLast()
+	NodeDoubleLL<T>* removeLast()
 	{
+		NodeDoubleLL<T>* answer = tail;
 		if (head == tail)
 		{
 			tail = nullptr;
@@ -74,6 +77,7 @@ public:
 			tail = tail->getPrvPtr();
 			tail->setNextPtr(nullptr);
 		}
+		return answer;
 	};
 
 	//This function is used to iterate through the list
@@ -126,9 +130,37 @@ public:
 
 	bool find(const T &value)const 
 	{
-		NodeDoubleLL<T>* temp;
-		while ((temp = iteratorForward()) && (temp->getValue() != value)){ ; }
+		NodeDoubleLL<T>* temp = head;
+		while (temp && (temp->getValue()!=value)){
+			temp = (NodeDoubleLL<T>*)temp->getNextPtr();
+		} 
 		return  	(bool)temp;
+	};
+
+	NodeDoubleLL<T>* remove(const T &value)
+	{
+		NodeDoubleLL<T>* temp = head;
+		while (temp && (temp->getValue() != value)){
+			temp = (NodeDoubleLL<T>*)temp->getNextPtr();
+		}
+		if (temp)
+		{
+			if (temp == head)
+			{
+				removeFirst();
+			}
+			else if (temp == tail)
+			{
+				removeLast();
+			}
+			else
+			{
+				NodeDoubleLL<T>* temp2 = (NodeDoubleLL<T>*)(temp->getNextPtr());
+				(temp->getPrvPtr())->setNextPtr(temp->getNextPtr());
+				temp2->setPrvPtr(temp->getPrvPtr());			
+			}
+		}
+		return temp;
 	};
 
 };
