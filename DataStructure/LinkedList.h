@@ -1,16 +1,20 @@
 #include "stdafx.h"
-#include "Node.h"
+#include "NodeSingleLL.h"
 #ifndef _LinkedList_H
 #define _LinkedList_H
 
 template <class T>
 class LinkedList{
 private:
-	Node<T>* head;
-	Node<T>*  tail;
+	NodeSingleLL<T>* head;
+	NodeSingleLL<T>*  tail;
+
 public:
+	//constructor
 	LinkedList() : head(nullptr), tail(nullptr){};
-	void addFirst(Node<T>* newPtr)
+	
+	//add a node at the head of linked list
+	void addFirst(NodeSingleLL<T>* newPtr)
 	{
 		if (head)
 		{
@@ -24,7 +28,8 @@ public:
 		}
 	};
 
-	void addLast(Node<T>* newPtr)
+	//add a node at the tail of linked list
+	void addLast(NodeSingleLL<T>* newPtr)
 	{
 		if (head)
 		{
@@ -38,19 +43,46 @@ public:
 		}
 	};
 
-	Node<T>* find(const T &value)
+	
+	//remove the head of the linked list
+	void removeFirst()
 	{
-		Node<T>*  temp = head;
-		while (temp && (temp->getValue()!=value) )
+		if (head==tail)
 		{
-			temp = temp->getNextPtr();		
+			head = nullptr;
+			tail = nullptr;
 		}
-		return temp;
+		else
+		{
+			head = head->getNextPtr();
+		}
 	};
+
+	//remove the tail of the linked list
+	void removeLast()
+	{
+		if (head == tail)
+		{
+			head = nullptr;
+			tail = nullptr;
+		}
+		else
+		{
+			NodeSingleLL<T>*  temp = head;
+			while (temp->getNextPtr())
+			{
+				temp = temp->getNextPtr();
+			}
+			temp->setNextPtr(nullptr);
+			tail = temp;
+		}
+	};
+
+	//Remove a node with a given value
 	void removeItem(const T &value)
 	{
-		Node<T>*  priv = head;
-		Node<T>*  curr = head;
+		NodeSingleLL<T>*  priv = head;
+		NodeSingleLL<T>*  curr = head;
 		while (curr && (curr->getValue() != value) )
 		{
 
@@ -75,6 +107,26 @@ public:
 			}
 		}
 
+	};
+
+	//search for a node in a linked list
+	bool find(const T &value)
+	{
+		NodeSingleLL<T>*  temp = head;
+		while (temp && (temp->getValue() != value))
+		{
+			temp = temp->getNextPtr();
+		}
+		return temp != nullptr;
+	};
+
+	NodeSingleLL<T>* iterator()const
+	{
+		static NodeSingleLL<T>* ptr = head;
+		NodeSingleLL<T>* tmp = ptr;
+		if (ptr)
+			ptr = ptr->getNextPtr();
+		return tmp;
 	};
 
 };
