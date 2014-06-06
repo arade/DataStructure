@@ -79,10 +79,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BinarySearchTree.h" />
     <ClInclude Include="DLinkedList.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="NodeDoubleLL.h" />
     <ClInclude Include="NodeSingleLL.h" />
+    <ClInclude Include="NodeTree.h" />
     <ClInclude Include="PostFix.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Stack.h" />

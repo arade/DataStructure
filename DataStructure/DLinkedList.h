@@ -82,9 +82,10 @@ public:
 
 	//This function is used to iterate through the list
 
-	NodeDoubleLL<T>* iteratorForward(void)
+	NodeDoubleLL<T>* iteratorForward(bool reset)
 	{
 		static NodeDoubleLL<T>* currentPtr = head;
+		reset ? currentPtr = head : ;
 		NodeDoubleLL<T>* temp = currentPtr;
 		if (currentPtr)
 			currentPtr = (NodeDoubleLL<T>*)currentPtr->getNextPtr();
@@ -105,9 +106,10 @@ public:
 		return temp;
 	};
 	
-	NodeDoubleLL<T>* iteratorBackward(void)
+	NodeDoubleLL<T>* iteratorBackward(bool reset)
 	{
 		static NodeDoubleLL<T>* currentPtr = tail;
+		reset ? currentPtr = tail : ;
 		NodeDoubleLL<T>* temp = currentPtr;
 		if (currentPtr)
 			currentPtr = (NodeDoubleLL<T>*)currentPtr->getPrvPtr();
